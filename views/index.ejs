@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>URL Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form action="/submit" method="POST" class="input-group mb-3">
+            <input type="text" name="url" class="form-control urlInput" placeholder="Enter URL" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <table class="table table-hover ">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">URL</th>
+                <th scope="col">Shortened URL</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% urls.forEach((url,idx)=>{ %>
+                    <tr>
+                        <th scope="row"><%=idx+1 %></th>
+                        <td><a href=<%=url.fullUrl%> target="_blank"><%=url.fullUrl %></a></td>
+                        <td><a href=<%=url.shortUrl%> target="_blank"><%=url.shortUrl %></a></td>
+                        <form action="" method="post"></form>
+                        <td>
+                            <form action="/delete/<%=url.shortUrl%>" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                      </tr>
+                <% }) %>
+              
+            </tbody>
+          </table>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
